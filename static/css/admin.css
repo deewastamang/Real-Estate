@@ -1,0 +1,27 @@
+#header{
+	background-color: #c520f7;
+}
+
+#content h1{
+	color: black;
+	font-weight: bold;
+}
+#content caption{
+	background-color: #fc44b2;
+}
+.model-listing a{
+	color: blue;
+}
+.model-realtor a{
+	color: blue;
+}
+.model-group a{
+	color: black;
+}
+.model-user a{
+	color: black;
+}
+
+div.breadcrumbs{
+	background:teal;
+}
