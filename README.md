@@ -1,4 +1,4 @@
-# Real-Estate-Django-Project
+# Real Estate website with Django
 This is a basic django project for a real estate system where an admin can add property with related realtors and users can log in and list the properties.
 
 # Home page
