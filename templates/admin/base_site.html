@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block branding %}
+    <h1 id="head">
+    	Realstate
+    	<img src="{% static "images/realstate.jpeg" %}" alt="Realstate" class="brand_img" height="45" width="80"> Admin Area
+    </h1>
+{% endblock branding %}
+
+{% block extrastyle %}
+    
+    <link rel="stylesheet" type="text/css" href="{% static "css/admin.css" %}">
+{% endblock extrastyle %}

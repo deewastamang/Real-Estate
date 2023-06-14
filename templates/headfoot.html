@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>GharJagga {% block title %}   
+    {% endblock title %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
+    <link rel="stylesheet" href="{% static "fonts/icomoon/style.css" %}">
+
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/magnific-popup.css" %}">
+    <link rel="stylesheet" href="{% static "css/jquery-ui.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/bootstrap-datepicker.css" %}">
+    <link rel="stylesheet" href="{% static "css/mediaelementplayer.css" %}">
+    <link rel="stylesheet" href="{% static "css/animate.css" %}">
+    <link rel="stylesheet" href="{% static "fonts/flaticon/font/flaticon.css" %}">
+    <link rel="stylesheet" href="{% static "css/fl-bigmug-line.css" %}">
+    
+  
+    <link rel="stylesheet" href="{% static "css/aos.css" %}">
+
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+  </head>
+  <body>
+  
+  <div class="site-loader"></div>
+  
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div> <!-- .site-mobile-menu -->
+
+    <div class="site-navbar mt-4">
+        <div class="container py-1">
+          <div class="row align-items-center">
+            <div class="col-8 col-md-8 col-lg-4">
+              <h1 class="mb-0"><a href="{% url 'index' %}" class="text-white h2 mb-0"><strong>{% block brandname %}
+                  GharJagga
+              {% endblock brandname %}<span class="text-danger">.</span></strong></a></h1>
+            </div>
+            <div class="col-4 col-md-4 col-lg-8">
+              <nav class="site-navigation text-right text-md-right" role="navigation">
+
+                <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+                <ul class="site-menu js-clone-nav d-none d-lg-block">
+                  <li class="{% if request.path == '/' %}                  
+                  active{% endif %}">
+                    <a href="{% url 'index' %}">Home</a>
+                  </li>
+                  <li><a href="{% url 'listings' %}">Listings</a></li>
+                  <li class="{% if request.path == '/about/' %}                  
+                  active{% endif %}"><a href="{% url 'about' %}">About</a></li>
+
+                  <li class="{% if request.path == '/contact/' %}                  
+                  active{% endif %}"><a href="{% url 'contact' %}">Contact</a></li>
+                    {% if user.is_authenticated %}
+                      <li class="nav-item">
+                        <a href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                      </li>
+                      <li class="{% if request.path == '/dashboard/' %}                  
+                  active{% endif %}">
+                    <a href={% url 'dashboard' %}>Dashboard</a>
+                  </li>
+                      <form action="{% url 'logout' %}" method="POST" id="logout">{% csrf_token %}
+                      <input type="hidden">
+                    </form>
+                    
+                  {% else %}
+                      
+                  <li class="{% if request.path == '/register/' %}                  
+                  active{% endif %}">
+                    <a href="{% url 'register' %}">Register</a>
+                  </li>
+                  <li class="{% if request.path == '/login/' %}                  
+                  active{% endif %}">
+                    <a href={% url 'login' %}>Login</a>
+                  </li>
+                  {% endif %}
+                </ul>
+              </nav>
+            </div>
+           
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {% block slider %}
+
+    <div class="slide-one-item home-slider owl-carousel">
+
+      <div class="site-blocks-cover overlay" style='background-image: url({% static "images/hero_bg_1.jpg" %});' data-aos="fade" data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row align-items-center justify-content-center text-center">
+            <div class="col-md-10">
+              <span class="d-inline-block bg-success text-white px-3 mb-3 property-offer-type rounded">For Rent</span>
+              <h1 class="mb-2">Khusi Niwas</h1>
+              <p class="mb-5"><strong class="h2 text-success font-weight-bold">Rs.22,50,500</strong></p>
+              
+            </div>
+          </div>
+        </div>
+      </div>  
+
+      <div class="site-blocks-cover overlay" style='background-image: url({% static "images/hero_bg_2.jpg" %});' data-aos="fade" data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row align-items-center justify-content-center text-center">
+            <div class="col-md-10">
+              <span class="d-inline-block bg-danger text-white px-3 mb-3 property-offer-type rounded">For Sale</span>
+              <h1 class="mb-2">30 anna Ghar</h1>
+              <p class="mb-5"><strong class="h2 text-success font-weight-bold">Rs.10,00,500</strong></p>
+              
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
+
+{% endblock slider %}
+
+{% block content %}
+    
+{% endblock content %}
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="mb-5">
+              <h3 class="footer-heading mb-4">About GharJagga</h3>
+              <p>GharJagga is a premier real estate company located in Kathmandu, Nepal. Established in 2023, our company is dedicated to providing top-quality housing facilities to our valued customers. We believe that everyone deserves a safe and comfortable place to call home, and we work tirelessly to make that a reality.</p>
+            </div>
+
+            
+            
+          </div>
+          <div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="row mb-5">
+              <div class="col-md-12">
+                <h3 class="footer-heading mb-4">Navigations</h3>
+              </div>
+              <div class="col-md-6 col-lg-6">
+                <ul class="list-unstyled">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Buy</a></li>
+                  <li><a href="#">Rent</a></li>
+                  <li><a href="#">Properties</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6 col-lg-6">
+                <ul class="list-unstyled">
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Contact Us</a></li>
+                  <li><a href="#">Terms</a></li>
+                </ul>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="col-lg-4 mb-5 mb-lg-0">
+            <h3 class="footer-heading mb-4">Follow Us</h3>
+
+                <div>
+                  <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+                  <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                  <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                  <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+                </div>
+
+            
+
+          </div>
+          
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+            <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+          </div>
+          
+        </div>
+      </div>
+    </footer>
+  </div>
+<!-- LOGIN FORM END -->
+  <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+  <script src="{% static "js/jquery-migrate-3.0.1.min.js" %}"></script>
+  <script src="{% static "js/jquery-ui.js" %}"></script>
+  <script src="{% static "js/popper.min.js" %}"></script>
+  <script src="{% static "js/bootstrap.min.js" %}"></script>
+  <script src="{% static "js/owl.carousel.min.js" %}"></script>
+  <script src="{% static "js/mediaelement-and-player.min.js" %}"></script>
+  <script src="{% static "js/jquery.stellar.min.js" %}"></script>
+  <script src="{% static "js/jquery.countdown.min.js" %}"></script>
+  <script src="{% static "js/jquery.magnific-popup.min.js" %}"></script>
+  <script src="{% static "js/bootstrap-datepicker.min.js" %}"></script>
+  <script src="{% static "js/aos.js" %}"></script>
+
+  <script src="{% static "js/main.js" %}"></script>
+    
+  </body>
+</html>    

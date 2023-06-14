@@ -1,0 +1,41 @@
+{% extends "headfoot.html" %}
+{% block title %} | Register{% endblock title %}
+{% load static %}
+{% block slider %}
+  <div style="background-image: url({% static "images/hero_bg_3.jpg" %});height:110px;width: 100%;">
+  </div>
+    <div style="margin-top:5px;margin-bottom:5px;background-color:#b8c5db;" class="container">
+         <!--Alerts-->
+         {% include 'parser/alert.html' %}
+  <form method="POST">{% csrf_token %}
+    <div class="form-group">
+      <label for="exampleInputText">Username</label>
+    <input name="username" class="form-control" type="text" placeholder="choose username" required>
+    </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input  name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username or email" required>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+      <label for="exampleInputText">First Name</label>
+    <input  name="fname" class="form-control" type="text" placeholder="optional">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputText">Last Name</label>
+    <input name="lname" class="form-control" type="text" placeholder="optional">
+    </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input  name="password1" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Confirm Password</label>
+    <input name="password2" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+  </div>
+  <button type="submit" class="btn btn-success btn-block">Sign Up</button><br><hr><hr>
+  <label for="register">Already Member Yet</label>
+  <a href="{% url 'register' %}" class="btn btn-info" role="button">Login</a>
+</form>
+</div>
+{% endblock slider %}

@@ -1,0 +1,163 @@
+{% extends "headfoot.html" %}
+{% block title %} | Search{% endblock title %}
+{% load humanize %}
+{% block content %}
+  <div class="site-section site-section-sm pb-0">
+      <div class="container">
+        <div class="row">
+          <form action="{% url 'search' %}" class="form-search col-md-12" style="margin-top: -100px;">
+            <div class="row  align-items-end">
+              <div class="col-md-3">
+                <label for="list-types">Select City</label>
+                <div class="select-wrap">
+                  <span class="icon icon-arrow_drop_down"></span>
+                  <select name="city" id="list-types" class="form-control d-block rounded-0">
+                     <option selected="true" disabled="disabled">City</option>
+                    {% for key,value in city_choices.items %}
+                      <option value="{{key}}" {% if key == values.city %} selected{% endif %}>{{value}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label for="offer-types">Select Bedrooms</label>
+                <div class="select-wrap">
+                  <span class="icon icon-arrow_drop_down"></span>
+                  <select name="bedrooms" id="offer-types" class="form-control d-block rounded-0">
+                    <option selected="true" disabled="disabled">Bedrooms</option>
+                    {% for key,value in bedroom_choices.items %}
+                      <option value="{{key}}"{% if key == values.bedrooms %} selected{% endif %}>{{value}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label for="select-city">Select Prices</label>
+                <div class="select-wrap">
+                  <span class="icon icon-arrow_drop_down"></span>
+                  <select name="price" id="select-city" class="form-control d-block rounded-0">
+                    <option selected="true" disabled="disabled">Prices</option>
+                    {% for key,value in price_choices.items %}
+                      <option value="{{key}}" {% if key == values.price %} selected{% endif %}>{{value}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <input type="submit" class="btn btn-success text-white btn-block rounded-0" value="Search">
+              </div>
+            </div>
+          </form>
+        </div>  
+
+        <!-- <div class="row">
+          <div class="col-md-12">
+            <div class="view-options bg-white py-3 px-3 d-md-flex align-items-center">
+              <div class="mr-auto">
+                <a href="index.html" class="icon-view view-module active"><span class="icon-view_module"></span></a>
+                <a href="view-list.html" class="icon-view view-list"><span class="icon-view_list"></span></a>
+                
+              </div>
+              <div class="ml-auto d-flex align-items-center">
+                <div>
+                  <a href="#" class="view-list px-3 border-right active">All</a>
+                  <a href="#" class="view-list px-3 border-right">Rent</a>
+                  <a href="#" class="view-list px-3">Sale</a>
+                </div>
+
+
+                <div class="select-wrap">
+                  <span class="icon icon-arrow_drop_down"></span>
+                  <select class="form-control form-control-sm d-block rounded-0">
+                    <option value="">Sort by</option>
+                    <option value="">Price Ascending</option>
+                    <option value="">Price Descending</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+       
+      </div>
+    </div>
+
+<div class="site-section site-section-sm bg-light">
+  <div class="container">
+    <h1>Search Results</h1>
+    {% if listings %}
+      <div class="row mb-5">
+         {% for listing in listings %}
+          <div class="col-md-6 col-lg-4 mb-4">
+
+            <div class="property-entry h-100">
+              <a href="{% url 'listing' listing.id %}" class="property-thumbnail">
+                <div class="offer-type-wrap">
+                  
+                  {% if listing.status == 'available' %}
+                    <span class="offer-type bg-success">{{ listing.status }}</span>
+                      <span class="offer-type bg-warning">on bid</span>
+                    {% else %}
+                      <span class="offer-type bg-danger">{{ listing.status }}</span>
+                  {% endif %}
+                </div>
+                <img src="{{ listing.photo_main.url }}" alt="Image" class="img-fluid">
+              </a>
+              <div class="p-4 property-body">
+                <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
+                <h2 class="property-title"><a href="{% url 'listing' listing.id %}">{{ listing.title }}</a></h2>
+                <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span>{{ listing.city }} {{listing.state }} {{listing.address}} {{listing.zipcode}}</span>
+                <strong class="property-price text-primary mb-3 d-block text-success">Rs.{{ listing.price |intcomma }}</strong>
+                <ul class="property-specs-wrap mb-3 mb-lg-0">
+                  <li>
+                    <span class="property-specs">Beds</span>
+                    <span class="property-specs-number">{{listing.bedrooms}} <sup>+</sup></span>
+                    
+                  </li>
+                  <li>
+                    <span class="property-specs">Baths</span>
+                    <span class="property-specs-number">{{listing.bathrooms}}</span>
+                    
+                  </li>
+                  <li>
+                    <span class="property-specs">SQ FT</span>
+                    <span class="property-specs-number">{{ listing.area }}</span>
+                    
+                  </li>
+                </ul>
+                  <div class="card-body">
+                      <p class="card-title " style="font-weight:bold;"><span class="property-icon icon-people">   </span> {{listing.realtor}}
+                      </p>
+                           <p><span class="property-icon icon-watch"></span>
+                          {{ listing.list_date | timesince}}
+                          </p>
+                        <hr>
+                            <a href="{% url 'listing' listing.id %}" class="btn btn-success btn-block ">   More info   </a>
+                          </div>
+                          
+              </div>
+            </div>
+          </div>{% endfor %}
+        </div>
+        
+
+        {% else %}
+            <div>
+              <h3>Not any list</h3>
+            </div>
+    {% endif %}
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <div class="site-pagination">
+              {% for i in listings.paginator.page_range %}
+            <a href="?page={{i}}" class="{% if listings.number == i %}active            
+            {% endif %}"> {{i}}</a>
+            {% endfor %}
+            </div>
+          </div>  
+        </div>
+        
+      </div>
+    </div>
+
+{% endblock content %}

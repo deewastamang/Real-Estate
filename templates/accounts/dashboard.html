@@ -1,0 +1,65 @@
+{% extends "headfoot.html" %}
+{% block title %} | Dashboard{% endblock title %}
+{% load static %}
+{% block brandname %}
+    Dashboard({{user.username}})
+{% endblock brandname %}
+{% block slider %}
+  <div style="background-image: url({% static "images/hero_bg_3.jpg" %});height:110px;width: 100%;"></div>
+		 <!--Alerts-->
+         {% include 'parser/alert.html' %}
+    <div style="margin-top:5px;margin-bottom:5px;background-color:#b8c5db;" class="container">
+    	<h1 style="color:black;">Welcome {{ user.first_name }} {{user.last_name}}</h1>
+		<table class="table">
+			<p>Here is the properties you have inquired</p>
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Properties</th>
+		      <th scope="col">Link</th>
+		      <th scope="col"></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{% if contacts %}
+		  	{% for contact in contacts %}
+		    <tr>
+		      <th scope="row">{{ contact.id }}</th>
+		      <td>{{ contact.listing }}</td>
+		      <td>
+		      	<a class="btn btn-light" href="{% url 'listing' contact.listing_id %}">View Details</a>
+		      </td>
+		      <td>
+		      	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Delete</button>
+		      	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel"></h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				        Are You sure !! want to delete this.
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				        <a class="btn btn-danger" href="{% url 'delete_contact' contact.id %}">Confirm</a>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+		      </td>
+		    </tr>
+		    {% endfor %}
+		    {% else %}
+		        <tr>
+		        	<td>You haven't Inquired yet</td>
+		        </tr>
+		    {% endif %}
+		  </tbody>
+	</table>
+    </div>
+{% endblock %}    
+

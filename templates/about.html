@@ -1,0 +1,177 @@
+{% extends "headfoot.html" %}
+{% load static %}
+{% block content %}
+    
+{% block slider %}
+    
+{% endblock slider %}
+
+    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url({% static 'images/hero_bg_2.jpg' %});" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+          <div class="col-md-10">
+            <h1 class="mb-2">About GharJagga</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <img src="{% static 'images/about.jpg' %}" alt="Image" class="img-fluid">
+          </div>
+          <div class="col-md-5 ml-auto"  data-aos="fade-up" data-aos-delay="200">
+            <div class="site-section-title">
+              <h2>Our Company</h2>
+            </div>
+            <p class="lead">We are company to help you find your dream home for happy living.</p>
+            <p>GharJagga is a premier real estate company located in Kathmandu, Nepal. Established in 2023, our company is dedicated to providing top-quality housing facilities to our valued customers. We believe that everyone deserves a safe and comfortable place to call home, and we work tirelessly to make that a reality.</p>
+            <p><a href="#" class="btn btn-outline-primary rounded-0 py-2 px-5">Read More</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-10 col-lg-7 mb-7 mb-lg-7"  data-aos="fade-up" data-aos-delay="200">
+            <div class="team-member">
+
+              <img src="{% static 'images/hero_bg_2.jpg' %}" alt="Image" class="img-fluid rounded mb-4">
+
+              <div class="text">
+                <span class="d-block mb-3 text-white-opacity-05">Real Estate Agent</span>
+                <p>GharJagga is a premier real estate company located in Kathmandu, Nepal. Established in 2023, our company is dedicated to providing top-quality housing facilities to our valued customers. We believe that everyone deserves a safe and comfortable place to call home, and we work tirelessly to make that a reality.</p>
+              </div>
+            </div>
+          </div>
+          {% if som %}
+          <div class="col-md-4 col-lg-4 mb-5 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <h5>Seller of The Month</h5>
+            <div class="team-member">
+              {% for seller in som %}
+                
+              
+              <img src="{{ seller.photo.url }}" alt="Image" class="img-fluid rounded mb-4" width="200" height="150">
+
+              <div class="text">
+
+                <h2 class="mb-2 font-weight-light text-black h4">{{ seller.name }}</h2>
+                <span class="d-block mb-3 text-white-opacity-05">Real Estate Agent</span>
+                <p>{{ seller.description }}</p> 
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+    </div>
+    </div>
+
+
+    <div class="site-section bg-light">
+      <div class="container" data-aos="fade">
+        <div class="row mb-5 justify-content-center">
+          <div class="col-md-7">
+            <div class="site-section-title text-center">
+              <h2>Our Realtors</h2>
+              <p>Here are some of our verified Realtors who are ready to help you find your dream house. They are professionals in their fields and try to meet your requirement.</p>
+            </div>
+          </div>
+        </div>
+        {% if realtors %}
+        <div class="row">
+            {% for realtor in realtors %}
+          <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
+            <div class="team-member">
+
+              <img src="{{ realtor.photo.url }}" alt="Image" class="img-fluid rounded mb-4">
+
+              <div class="text">
+
+                <h2 class="mb-2 font-weight-light text-black h4">{{ realtor.name }}</h2>
+                <span class="d-block mb-3 text-white-opacity-05">Real Estate Agent</span>
+                <p>{{ realtor.description }}</p>
+              </div>
+
+            </div>
+          </div>
+            {% endfor %}
+
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center">
+            <div class="site-section-title">
+              <h2>Frequently Ask Questions</h2>
+            </div>
+            <p>Here are some of the Frequently Asked Questions from our different valued customers which may help you answer your questions related to our company.</p>
+          </div>
+        </div>
+
+        <div class="row justify-content-center" data-aos="fade" data-aos-delay="100">
+          <div class="col-md-8">
+            <div class="accordion unit-8" id="accordion">
+            <div class="accordion-item">
+              <h3 class="mb-0 heading">
+                <a class="btn-block" data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true" aria-controls="collapseOne">What is the name of your company<span class="icon"></span></a>
+              </h3>
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="body-text">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur quae cumque perspiciatis aperiam accusantium facilis provident aspernatur nisi optio debitis dolorum, est eum eligendi vero aut ad necessitatibus nulla sit labore doloremque magnam! Ex molestiae, dolor tempora, ad fuga minima enim mollitia consequuntur, necessitatibus praesentium eligendi officia recusandae culpa tempore eaque quasi ullam magnam modi quidem in amet. Quod debitis error placeat, tempore quasi aliquid eaque vel facilis culpa voluptate.</p>
+                </div>
+              </div>
+            </div> <!-- .accordion-item -->
+            
+            <div class="accordion-item">
+              <h3 class="mb-0 heading">
+                <a class="btn-block" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">How much pay for 3  months?<span class="icon"></span></a>
+              </h3>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="body-text">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel ad laborum expedita. Nostrum iure atque enim quisquam minima distinctio omnis, consequatur aliquam suscipit, quidem, esse aspernatur! Libero, excepturi animi repellendus porro impedit nihil in doloremque a quaerat enim voluptatum, perspiciatis, quas dignissimos maxime ut cum reiciendis eius dolorum voluptatem aliquam!</p>
+                </div>
+              </div>
+            </div> <!-- .accordion-item -->
+
+            <div class="accordion-item">
+              <h3 class="mb-0 heading">
+                <a class="btn-block" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree">Do I need to register?  <span class="icon"></span></a>
+              </h3>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="body-text">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel ad laborum expedita. Nostrum iure atque enim quisquam minima distinctio omnis, consequatur aliquam suscipit, quidem, esse aspernatur! Libero, excepturi animi repellendus porro impedit nihil in doloremque a quaerat enim voluptatum, perspiciatis, quas dignissimos maxime ut cum reiciendis eius dolorum voluptatem aliquam!</p>
+                </div>
+              </div>
+            </div> <!-- .accordion-item -->
+
+            <div class="accordion-item">
+              <h3 class="mb-0 heading">
+                <a class="btn-block" data-toggle="collapse" href="#collapseFour" role="button" aria-expanded="false" aria-controls="collapseFour">Who should I contact in case of support.<span class="icon"></span></a>
+              </h3>
+              <div id="collapseFour" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="body-text">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel ad laborum expedita. Nostrum iure atque enim quisquam minima distinctio omnis, consequatur aliquam suscipit, quidem, esse aspernatur! Libero, excepturi animi repellendus porro impedit nihil in doloremque a quaerat enim voluptatum, perspiciatis, quas dignissimos maxime ut cum reiciendis eius dolorum voluptatem aliquam!</p>
+                </div>
+              </div>
+            </div> <!-- .accordion-item -->
+
+          </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+
+
+{% endblock content %}
